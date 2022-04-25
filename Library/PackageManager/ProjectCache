@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637860631417153616
+      ticks: 637864802539269922
     m_Hash: 4190219404
   m_LockFileStatus:
     m_FilePath: C:/Users/User/Desktop/MyProject/Just_Start/Packages/packages-lock.json
@@ -13,8 +13,8 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637860631417163589
-    m_Hash: 2886564098
+      ticks: 637864802891009064
+    m_Hash: 974396490
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -203,6 +203,7 @@ m_PackageAssets:
         - 3.0.10
         - 3.0.12
         - 3.0.13
+        - 3.0.14
         compatible:
         - 1.0.2
         - 1.0.6
@@ -233,6 +234,7 @@ m_PackageAssets:
         - 3.0.10
         - 3.0.12
         - 3.0.13
+        - 3.0.14
         verified: 2.0.7
       dependencies:
       - name: com.unity.test-framework
@@ -609,10 +611,12 @@ m_PackageAssets:
         - 1.1.29
         - 1.1.30
         - 1.1.31
+        - 2.0.1-exp.1
         - 2.0.1-pre.12
         - 2.0.1-pre.18
         compatible:
         - 1.1.31
+        - 2.0.1-exp.1
         - 2.0.1-pre.12
         - 2.0.1-pre.18
         verified: 1.1.31
@@ -3364,13 +3368,17 @@ m_PackageAssets:
       errors: []
       versions:
         all:
+        - 0.0.1-preview.3
+        - 1.0.0
         - 1.0.1
         compatible:
+        - 0.0.1-preview.3
+        - 1.0.0
         - 1.0.1
         verified: 1.0.1
       dependencies:
       - name: com.unity.subsystemregistration
-        version: 1.0.6
+        version: 1.0.5
       resolvedDependencies:
       - name: com.unity.subsystemregistration
         version: 1.1.0
@@ -3394,13 +3402,13 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
-      datePublishedTicks: 0
+      datePublishedTicks: 637056471600000000
       documentationUrl: 
       hasRepository: 1
       repository:
         type: git
         url: git@github.cds.internal.unity3d.com:unity/com.unity.xr.interactionsubsystems.git
-        revision: e4d74ea2d737ed36976840f753a2817ef9e4e56d
+        revision: c9d1e6a52c5806d8ec4d9f74ec9eaaf54f07d2c6
         path: 
     - packageId: com.unity.xr.arsubsystems@4.1.9
       testable: 0
@@ -3423,9 +3431,90 @@ m_PackageAssets:
       errors: []
       versions:
         all:
+        - 2.0.2
+        - 2.1.0-preview.1
+        - 2.1.0-preview.2
+        - 2.1.0
+        - 2.1.1
+        - 2.1.2
+        - 2.1.3
+        - 2.1.14
+        - 2.1.16
+        - 2.1.18
+        - 2.1.19
+        - 2.2.0-preview.2
+        - 2.2.0-preview.3
+        - 2.2.0-preview.6
+        - 3.0.0-preview.1
+        - 3.0.0-preview.2
+        - 3.0.0-preview.3
+        - 3.0.0-preview.4
+        - 3.0.0
+        - 3.0.2
+        - 3.1.0-preview.1
+        - 3.1.0-preview.2
+        - 3.1.0-preview.4
+        - 3.1.0-preview.6
+        - 3.1.0-preview.7
+        - 3.1.0-preview.8
+        - 3.1.3
+        - 3.1.5
+        - 3.1.6
+        - 3.1.10
+        - 4.0.0-preview.1
+        - 4.0.0-preview.3
+        - 4.0.1
+        - 4.0.8
+        - 4.0.9
+        - 4.0.10
+        - 4.0.12
+        - 4.1.0-preview.1
+        - 4.1.0-preview.2
+        - 4.1.0-preview.3
+        - 4.1.0-preview.5
+        - 4.1.0-preview.6
+        - 4.1.0-preview.7
+        - 4.1.0-preview.9
+        - 4.1.0-preview.10
+        - 4.1.0-preview.11
+        - 4.1.0-preview.12
+        - 4.1.0-preview.13
+        - 4.1.1
+        - 4.1.3
+        - 4.1.5
+        - 4.1.7
         - 4.1.9
+        - 4.2.0-pre.2
+        - 4.2.0-pre.3
+        - 4.2.0-pre.4
+        - 4.2.0-pre.5
+        - 4.2.0-pre.7
+        - 4.2.0-pre.8
+        - 4.2.0-pre.9
+        - 4.2.0-pre.10
+        - 4.2.0-pre.12
+        - 4.2.0
+        - 4.2.1
+        - 4.2.2
+        - 5.0.0-pre.5
+        - 5.0.0-pre.6
+        - 5.0.0-pre.7
+        - 5.0.0-pre.8
+        - 5.0.0-pre.9
         compatible:
         - 4.1.9
+        - 4.2.0-pre.2
+        - 4.2.0-pre.3
+        - 4.2.0-pre.4
+        - 4.2.0-pre.5
+        - 4.2.0-pre.7
+        - 4.2.0-pre.8
+        - 4.2.0-pre.9
+        - 4.2.0-pre.10
+        - 4.2.0-pre.12
+        - 4.2.0
+        - 4.2.1
+        - 4.2.2
         verified: 4.1.9
       dependencies:
       - name: com.unity.subsystemregistration
@@ -3453,7 +3542,7 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
-      datePublishedTicks: 0
+      datePublishedTicks: 637781298810000000
       documentationUrl: 
       hasRepository: 1
       repository:
@@ -4329,12 +4418,17 @@ m_PackageAssets:
       errors: []
       versions:
         all:
+        - 1.0.0-preview.4
+        - 1.0.4
+        - 1.0.5
         - 1.0.6
         - 1.1.0
+        - 1.1.1
         compatible:
         - 1.0.6
         - 1.1.0
-        verified: 1.1.0
+        - 1.1.1
+        verified: 1.1.1
       dependencies:
       - name: com.unity.modules.subsystems
         version: 1.0.0
@@ -4359,7 +4453,7 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
-      datePublishedTicks: 0
+      datePublishedTicks: 637314426150000000
       documentationUrl: 
       hasRepository: 1
       repository:
