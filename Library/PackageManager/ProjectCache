@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637864874011462243
+      ticks: 637866038149934388
     m_Hash: 1608649126
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -4358,6 +4358,7 @@ m_PackageAssets:
         - 1.1.0-pre.69
         - 1.2.0
         - 1.3.1
+        - 1.3.2
         compatible:
         - 1.0.1
         - 1.1.0-pre.7
@@ -4369,6 +4370,7 @@ m_PackageAssets:
         - 1.1.0-pre.69
         - 1.2.0
         - 1.3.1
+        - 1.3.2
         verified: 1.0.1
       dependencies:
       - name: com.unity.modules.unitywebrequest
