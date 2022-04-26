@@ -56,15 +56,15 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\PhysicsHandPresence.cs" />
+    <Compile Include="Assets\Models\Oculus Hands Physics\Scripts\HandPresence.cs" />
     <Compile Include="Assets\Scripts\HandPresencev1.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Models\Nokobot\Modern Guns - Handgun\_Demo Assets\SimpleShoot.cs" />
     <Compile Include="Assets\Scripts\MapFactory.cs" />
     <Compile Include="Assets\Scripts\LocomotionController.cs" />
-    <Compile Include="Assets\Models\Oculus Hands Physics\Scripts\HandPresence.cs" />
-    <Compile Include="Assets\Scripts\PhysicsHandPresence.cs" />
     <Compile Include="Assets\Scripts\CapsuleFollowHMD.cs" />
     <Compile Include="Assets\Scripts\XROffsetGrabInteractable.cs" />
-    <Compile Include="Assets\Models\Nokobot\Modern Guns - Handgun\_Demo Assets\SimpleShoot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\Nokobot\Modern Guns - Handgun\README.txt" />
