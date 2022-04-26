@@ -10,14 +10,17 @@ public class LocomotionController : MonoBehaviour
     public InputHelpers.Button teleportActivationButton;
     public float activationThreshold = 0.1f;
 
+    public bool EnableLeftTeleport { get; set; } = true;
+    public bool EnableRightTeleport { get; set; } = true;
+
     // Update is called once per frame
     void Update()
     {
         if(leftTeleportRay)
-            leftTeleportRay.gameObject.SetActive(CheckifActivated(leftTeleportRay));
+            leftTeleportRay.gameObject.SetActive(EnableLeftTeleport && CheckifActivated(leftTeleportRay));
 
         if (rightTeleportRay)
-            rightTeleportRay.gameObject.SetActive(CheckifActivated(rightTeleportRay));
+            rightTeleportRay.gameObject.SetActive(EnableRightTeleport && CheckifActivated(rightTeleportRay));
     }
 
     public bool CheckifActivated(XRController controller)
