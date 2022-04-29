@@ -362,12 +362,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db85bc0c2dd8065438ef2423ad93e264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TileSize: 1
-  m_MapOBJ:
-  - {fileID: 1808373179686166456, guid: 478d81caa6e58974a9c625659d71ddca, type: 3}
+  m_TileSizeX: 1
+  m_TileSizeY: 1
+  m_TileSizeZ: 1
+  m_wallHeight: 1
+  m_TileOBJ:
   - {fileID: 4759616122496240257, guid: 7bc83f221ede37e4ba491d795581896c, type: 3}
   - {fileID: 3693694476683969995, guid: bb1d812b822734441a35d80cc2c39a26, type: 3}
   - {fileID: 5994403454468693787, guid: fc3e551fd34035942869ba6b08445bf2, type: 3}
+  - {fileID: 1808373179686166456, guid: 478d81caa6e58974a9c625659d71ddca, type: 3}
+  m_CeilingOBJ:
+  - {fileID: 4032093843667626257, guid: 0a8b35fe1f6a9b345af6fbd40de2004c, type: 3}
+  m_WallOBJ: {fileID: 2725907159488574874, guid: f6ae7f41348834c448c513dd0699be02, type: 3}
 --- !u!4 &1633485345
 Transform:
   m_ObjectHideFlags: 0

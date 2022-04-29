@@ -5,23 +5,33 @@ using UnityEngine;
 public class MapFactory : MonoBehaviour
 {
     [SerializeField]
-    private float m_TileSize;
+    private float m_TileSizeX;
+    [SerializeField]
+    private float m_TileSizeY;
+    [SerializeField]
+    private float m_TileSizeZ;
+    [SerializeField]
+    private float m_wallHeight;
 
     [SerializeField]
-    private GameObject[] m_MapOBJ;
+    private GameObject[] m_TileOBJ;
+    [SerializeField]
+    private GameObject[] m_CeilingOBJ;
+    [SerializeField]
+    private GameObject m_WallOBJ;
 
     private const int m_MaxLine = 100;
     private int m_TileCount;
 
-    bool[,] TileisEmpty = new bool[m_MaxLine, m_MaxLine];
+    private bool[,] TileisEmpty = new bool[m_MaxLine, m_MaxLine];
 
-    Stack<Tile> m_tileStack = new Stack<Tile>();
+    private Stack<Tile> m_tileStack = new Stack<Tile>();
+    private Queue<Tile> m_tileQueue = new Queue<Tile>();
 
     class Tile
     {
         public int x;
         public int z;
-        public GameObject m_TileOBJ;
         public Tile(int _x, int _z)
         {
             x = _x;
@@ -34,15 +44,51 @@ public class MapFactory : MonoBehaviour
         int type = Random.Range(0, 4);
         Tile newTile = new Tile(x, z);
 
-        newTile.m_TileOBJ
-            = Instantiate(m_MapOBJ[0], new Vector3(x * m_TileSize, 0, z * m_TileSize), Quaternion.Euler(0, 0, 0));
+        Instantiate(m_TileOBJ[type], new Vector3(x * m_TileSizeX, 0, z * m_TileSizeZ), Quaternion.Euler(0, 0, 0));
+        Instantiate(m_TileOBJ[type], new Vector3(x * m_TileSizeX, m_TileSizeY * 2, z * m_TileSizeZ), Quaternion.Euler(0, 0, 0));
 
         m_tileStack.Push(newTile);
+        m_tileQueue.Enqueue(newTile);
+
         TileisEmpty[x, z] = false;
         m_TileCount++;
     }
 
-    int FindEmpty(int x, int z)
+    void CreateWall(int _x, int _z, int dir)
+    {
+        int type = Random.Range(0, 4);
+        Tile newTile = new Tile(_x, _z);
+
+        float x = _x * m_TileSizeX;
+        float z = _z * m_TileSizeZ;
+
+        float angle = 0;
+
+        switch (dir)
+        {
+            case 0:
+                z += m_TileSizeZ;
+                angle = 90;
+                break;
+            case 1:
+                z -= m_TileSizeZ;
+                angle = 90;
+                break;
+            case 2:
+                x -= m_TileSizeX;
+                break;
+            case 3:
+                x += m_TileSizeX;
+                break;
+        }
+
+        if (dir - 2 < 0)
+            angle = 90;
+
+        Instantiate(m_WallOBJ, new Vector3(x, m_TileSizeY, z), Quaternion.Euler(0, angle, 0));
+    }
+
+    int FindEmpty(int _x, int _z, int createType)
     {
         int dir = 0;
 
@@ -50,62 +96,88 @@ public class MapFactory : MonoBehaviour
 
         int count = 0;
 
-        int createX;
-        int createZ;
+        int x;
+        int z;
 
         while (count < 4)
         {
-            createX = x;
-            createZ = z;
+            x = _x;
+            z = _z;
 
-            for (int i = 0; i < 4; i++)
+            if(createType == 0)
             {
-                dir = Random.Range(0, 4);
-                if (dir == usedDir[i]) continue;
-                usedDir[count] = dir;
-                count++;
-                break;
+                for (int i = 0; i < 4; i++)
+                {
+                    dir = Random.Range(0, 4);
+                    if (dir == usedDir[i]) continue;
+                    usedDir[count] = dir;
+                    count++;
+                    break;
+                }
+            }
+            else
+            {
+                dir = count++;                
             }
 
             switch (dir)
             {
                 case 0:
-                    createZ += 1;
+                    z += 1;
                     break;
                 case 1:
-                    createZ -= 1;
+                    z -= 1;
                     break;
                 case 2:
-                    createX -= 1;
+                    x -= 1;
                     break;
                 case 3:
-                    createX += 1;
+                    x += 1;
                     break;
             }
 
-            if (createX < 0) createX = 0;
-            if (createX >= m_MaxLine) createX = m_MaxLine - 1;
-            if (createZ < 0) createZ = 0;
-            if (createZ >= m_MaxLine) createZ = m_MaxLine - 1;
-
-            if (TileisEmpty[createX, createZ])
+            if (createType == 0)
             {
-                CreateTile(createX, createZ);
-                return count;
+                if (x < 0) x = 0;
+                if (x >= m_MaxLine) x = m_MaxLine - 1;
+                if (z < 0) z = 0;
+                if (z >= m_MaxLine) z = m_MaxLine - 1;
+
+                if (TileisEmpty[x, z])
+                {
+                    CreateTile(x, z);
+                    return count;
+                }
             }
-        }       
+            else
+            {
+                if(x > -1 && x < m_MaxLine && z > -1 && z < m_MaxLine)
+                {
+                    if(TileisEmpty[x, z])
+                    CreateWall(_x, _z, dir);
+                }
+                else
+                {
+                    CreateWall(_x, _z, dir);
+                }
+            }
+        }
+
         return count;
     }
 
-    void CreateLoop()
+    void TileCreateLoop()
     {
-
         int x = 0;
         int z = 0;
 
-        while (m_TileCount < 120)
+        int random = 0;
+
+        while (m_TileCount < 100)
         {
-            if(FindEmpty(x, z) < 4)
+            random = Random.Range(0, 4);
+
+            if(FindEmpty(x, z, 0) < 4)
             {
                 x = m_tileStack.Peek().x;
                 z = m_tileStack.Peek().z;
@@ -120,7 +192,7 @@ public class MapFactory : MonoBehaviour
                     x = lastTile.x;
                     z = lastTile.z;
 
-                    if (FindEmpty(x, z) < 4)
+                    if (FindEmpty(x, z, 0) < 4)
                     {
                         break;
                     }
@@ -128,6 +200,23 @@ public class MapFactory : MonoBehaviour
             }
         }
     }
+
+    void WallCreateLoop()
+    {
+        Tile curTile;
+
+        int x;
+        int z;
+
+        while(m_tileQueue.Count > 0)
+        {
+            curTile = m_tileQueue.Dequeue();
+            x = curTile.x;
+            z = curTile.z;
+            FindEmpty(x, z, 1);
+        }
+    }
+
 
     void Start()
     {
@@ -141,11 +230,8 @@ public class MapFactory : MonoBehaviour
             }
         }
                 
-        CreateTile(0, 0);        
-        CreateLoop();
-    }
-
-    private void FixedUpdate()
-    {
+        CreateTile(0, 0);
+        TileCreateLoop();
+        WallCreateLoop();
     }
 }
