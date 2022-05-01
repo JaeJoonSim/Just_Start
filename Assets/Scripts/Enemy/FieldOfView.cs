@@ -5,26 +5,45 @@ using UnityEngine.AI;
 
 public class FieldOfView : MonoBehaviour
 {
+    //fsm
+    enum EnemyState
+    {
+        Idle,
+        Move,
+        Attack,
+        Return,
+        Damaged,
+        Die
+    }
+    EnemyState m_State;
+
+    //공격 범위
+    public float attackDistace = 2f;
+
+
     // 시야 영역의 반지름과 시야 각도
     public float viewRadius;
     [Range(0, 360)]
     public float viewAngle;
 
-    // 마스크 2종
+    //벽 레이어
     public LayerMask obstacleMask;
-
-    public float meshResolution;
-
-    Mesh viewMesh;
-    public MeshFilter viewMeshFilter;
 
     //네비게이션 용 
     NavMeshAgent agent;
+    //스폰된 위치
     Vector3 spawn;
+    //플레이어 위치
     public Transform target;
-
+    //쫒는 중인지 체크할
     bool NaviDelay = false;
+    //추적시간 코루틴 사용할 변수
+    Coroutine coroutineForNav;
 
+    //테스트용 시야 메쉬 그리는 데 사용
+    public float meshResolution;
+    Mesh viewMesh;
+    public MeshFilter viewMeshFilter;
     public struct ViewCastInfo
     {
         public bool hit;
@@ -43,6 +62,8 @@ public class FieldOfView : MonoBehaviour
 
     void Start()
     {
+        m_State = EnemyState.Idle;
+
         spawn = transform.position;
         agent = GetComponent<NavMeshAgent>();
 
@@ -56,10 +77,93 @@ public class FieldOfView : MonoBehaviour
 
     }
 
-    void LateUpdate()
+    void Update()
     {
+        Debug.Log(m_State);
+        
+        switch (m_State)
+        {
+            case EnemyState.Idle:
+                Idle();
+                break;
+
+            case EnemyState.Move:
+                Move();
+                break;
+
+            case EnemyState.Attack:
+                Attack();
+                break;
+
+            case EnemyState.Return:
+                Return();
+                break;
+
+            case EnemyState.Damaged:
+                break;
+
+            case EnemyState.Die:
+                break;
+        }
+        //시야 범위 그림
         DrawFieldOfView();
     }
+
+    void Idle()
+    {
+        transform.Rotate(new Vector3(0, 20 * Time.deltaTime, 0));
+        if (NaviDelay)
+        {
+            m_State = EnemyState.Move;
+            print("Idle => move");
+        }
+        
+    }
+
+    void Move()
+    {
+        
+        if (Vector3.Distance(transform.position, target.position) > attackDistace)
+        {
+            agent.SetDestination(target.position);
+            agent.stoppingDistance = attackDistace;
+        }
+        else
+        {
+            m_State = EnemyState.Attack;
+            print("move => attack");
+        }
+    }
+
+    void Return()
+    {
+
+        if (Vector3.Distance(transform.position, spawn) > 0.2f)
+        {
+            agent.stoppingDistance = 0;
+            agent.SetDestination(spawn);
+        }
+        else
+        {
+            transform.position = spawn;
+            m_State = EnemyState.Idle;
+            print("return => idle");
+        }
+    }
+
+    void Attack()
+    {
+        if (Vector3.Distance(transform.position, target.position) < attackDistace)
+        {
+            print("isAttack");
+        }
+        else
+        {
+            m_State = EnemyState.Move;
+            print("attack => move");
+        }
+    }
+
 
     IEnumerator FindTargetsWithDelay(float delay)
     {
@@ -69,8 +173,6 @@ public class FieldOfView : MonoBehaviour
             FindVisibleTargets();
         }
     }
-
-
 
     void FindVisibleTargets()
     {
@@ -84,28 +186,16 @@ public class FieldOfView : MonoBehaviour
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.transform.position);
 
-                // 타겟으로 가는 레이캐스트에 obstacleMask가 걸리지 않으면 visibleTargets에 Add
+                // 타겟으로 가는 레이캐스트에 obstacleMask가 걸리지 않으면
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
                     NaviDelay = true;
+                    if (coroutineForNav != null)
+                        StopCoroutine(coroutineForNav);
+
+                    coroutineForNav = StartCoroutine(TargetNaviDelay(5f));
                 }
             }
-        }
-        else
-        {
-            if (NaviDelay)
-            {
-                StartCoroutine(TargetNaviDelay(5f));
-            }
-        }
-
-        if (NaviDelay)
-        {
-            agent.SetDestination(target.position);
-        }
-        else
-        {
-            agent.SetDestination(spawn);
         }
 
     }
@@ -113,6 +203,8 @@ public class FieldOfView : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         NaviDelay = false;
+        m_State = EnemyState.Return;
+        print("isReturn ");
     }
 
     // 테스트용으로 시야 범위가 보이게
