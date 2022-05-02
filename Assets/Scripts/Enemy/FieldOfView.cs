@@ -137,8 +137,12 @@ public class FieldOfView : MonoBehaviour
 
     void Return()
     {
-
-        if (Vector3.Distance(transform.position, spawn) > 0.2f)
+        if (NaviDelay)
+        {
+            m_State = EnemyState.Move;
+            print("return => Move");
+        }
+        else if (Vector3.Distance(transform.position, spawn) > 0.2f)
         {
             agent.stoppingDistance = 0;
             agent.SetDestination(spawn);
