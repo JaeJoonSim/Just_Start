@@ -56,11 +56,13 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Enemy\FieldOfViewEditor.cs" />
     <Compile Include="Assets\Scripts\Gun\Magazine.cs" />
     <Compile Include="Assets\Scripts\VR\PhysicsHandPresence.cs" />
     <Compile Include="Assets\Models\Oculus Hands Physics\Scripts\HandPresence.cs" />
     <Compile Include="Assets\Scripts\VR\HandPresencev1.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Scripts\Enemy\FieldOfView.cs" />
     <Compile Include="Assets\Scripts\Gun\SimpleShoot.cs" />
     <Compile Include="Assets\Scripts\VR\XRSocketInteractorTag.cs" />
     <Compile Include="Assets\Scripts\MapFactory.cs" />
@@ -68,8 +70,6 @@
     <Compile Include="Assets\Scripts\VR\CapsuleFollowHMD.cs" />
     <Compile Include="Assets\Scripts\Gun\OnTargetReahed.cs" />
     <Compile Include="Assets\Scripts\XROffsetGrabInteractable.cs" />
-    <Compile Include="Assets\Scripts\Enemy\FieldOfView.cs" />
-    <Compile Include="Assets\Scripts\Enemy\FieldOfViewEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\Nokobot\Modern Guns - Handgun\README.txt" />
