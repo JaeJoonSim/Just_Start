@@ -9,7 +9,7 @@ public class MapFactory : MonoBehaviour
     [SerializeField] private float m_wallHeight;
 
     [SerializeField] private GameObject[] m_TileOBJ;
-    [SerializeField] private GameObject[] m_CeilinOBJ;
+    [SerializeField] private GameObject[] m_CeilingOBJ;
     [SerializeField] private GameObject m_WallOBJ;
     [SerializeField] private GameObject m_ParentsOBJ;
 
@@ -244,11 +244,11 @@ public class MapFactory : MonoBehaviour
             }
         }
                 
-        CreateTile(0, 0, 2);
+        CreateTile(0, 0, 1);
         TileCreateLoop();
         WallCreateLoop();
         Destroy(m_ExitTileOBJ[0]);
         Destroy(m_ExitTileOBJ[1]);
-        CreateTile(m_lastPoint.x, m_lastPoint.z, 2);
+        CreateTile(m_lastPoint.x, m_lastPoint.z, 1);
     }
 }
