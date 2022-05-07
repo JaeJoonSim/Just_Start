@@ -333,6 +333,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1424608715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1424608716}
+  m_Layer: 0
+  m_Name: MapOBJ
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1424608716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424608715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1633485343
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,18 +392,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db85bc0c2dd8065438ef2423ad93e264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TileSizeX: 1
-  m_TileSizeY: 1
-  m_TileSizeZ: 1
-  m_wallHeight: 1
+  m_TileSizeX: 2
+  m_TileSizeZ: 2
+  m_wallHeight: 3
   m_TileOBJ:
-  - {fileID: 4759616122496240257, guid: 7bc83f221ede37e4ba491d795581896c, type: 3}
-  - {fileID: 3693694476683969995, guid: bb1d812b822734441a35d80cc2c39a26, type: 3}
-  - {fileID: 5994403454468693787, guid: fc3e551fd34035942869ba6b08445bf2, type: 3}
-  - {fileID: 1808373179686166456, guid: 478d81caa6e58974a9c625659d71ddca, type: 3}
-  m_CeilingOBJ:
-  - {fileID: 4032093843667626257, guid: 0a8b35fe1f6a9b345af6fbd40de2004c, type: 3}
-  m_WallOBJ: {fileID: 2725907159488574874, guid: f6ae7f41348834c448c513dd0699be02, type: 3}
+  - {fileID: 4484686206251797509, guid: 7bc83f221ede37e4ba491d795581896c, type: 3}
+  - {fileID: 7298498875276310530, guid: bb1d812b822734441a35d80cc2c39a26, type: 3}
+  - {fileID: 5563195058039612298, guid: fc3e551fd34035942869ba6b08445bf2, type: 3}
+  - {fileID: 7120576508639161468, guid: 478d81caa6e58974a9c625659d71ddca, type: 3}
+  m_CeilinOBJ: []
+  m_WallOBJ: {fileID: 7120576508639161468, guid: 478d81caa6e58974a9c625659d71ddca, type: 3}
+  m_ParentsOBJ: {fileID: 1424608715}
 --- !u!4 &1633485345
 Transform:
   m_ObjectHideFlags: 0
